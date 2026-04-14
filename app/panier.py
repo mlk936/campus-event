@@ -14,9 +14,10 @@ def calculer_prix_panier(articles):
         if article["quantite"] < 0:
             raise ValueError("La quantité ne peut pas être négative.")
         total += article["prix"] * article["quantite"]
-    return total   # au lieu de round(total, 2)
+        
+    return total   
 
-    #return round(total, 2)
+    # return round(total, 2)
 
 
 def verifier_age(age):
