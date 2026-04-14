@@ -7,7 +7,6 @@ on:
 
 jobs:
   ci:
-    name: Lint et Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -19,14 +18,14 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: 🔧 Set PYTHONPATH
+        run: echo "PYTHONPATH=." >> $GITHUB_ENV
+
       - name: 📦 Install dependencies
-        run: |
-          pip install flake8 pytest
+        run: pip install flake8 pytest
 
       - name: 🔍 Lint check (flake8)
-        run: |
-          flake8 app/ tests/ --max-line-length=100
+        run: flake8 app/ tests/ --max-line-length=100
 
       - name: 🧪 Run tests
-        run: |
-          pytest -v
+        run: pytest tests/ -v
