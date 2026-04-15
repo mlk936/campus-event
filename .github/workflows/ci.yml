@@ -1,4 +1,4 @@
-name: 🛡️ Bouclier de Production CI
+name:  Bouclier de Production CI
 
 on:
   pull_request:
@@ -10,22 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout code
+      - name:  Checkout code
         uses: actions/checkout@v4
 
-      - name: 🐍 Setup Python
+      - name:  Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: 🔧 Set PYTHONPATH
+      - name:  Set PYTHONPATH
         run: echo "PYTHONPATH=." >> $GITHUB_ENV
 
-      - name: 📦 Install dependencies
+      - name:  Install dependencies
         run: pip install flake8 pytest
 
-      - name: 🔍 Lint check (flake8)
+      - name:  Lint check (flake8)
         run: flake8 app/ tests/ --max-line-length=100
 
-      - name: 🧪 Run tests
+      - name:  Run tests
         run: pytest tests/ -v
+        

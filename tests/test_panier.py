@@ -2,7 +2,6 @@ import pytest
 from app.panier import calculer_prix_panier, verifier_age
 
 
-# === Tests pour calculer_prix_panier ===
 
 def test_panier_simple():
     """Un panier basique doit retourner le bon total."""

@@ -18,7 +18,6 @@ def calculer_prix_panier(articles):
 
     return round(total, 2)
 
-
 def verifier_age(age):
     """
     Vérifie si un utilisateur est majeur.
