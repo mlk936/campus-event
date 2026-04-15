@@ -1,37 +1,32 @@
-name: 🛡️ Bouclier de Production CI
+name:  Bouclier de Production CI
 
-# Déclencheur : s'active sur chaque PR vers main
 on:
   pull_request:
     branches:
       - main
 
 jobs:
-  verifier-le-code:
-    name: Lint et Tests
-    runs-on: ubuntu-latest   # Environnement Linux/Ubuntu
+  ci:
+    runs-on: ubuntu-latest
 
     steps:
-      # Étape 1 : Récupérer le code de la PR
-      - name: 📥 Récupération du code
+      - name:  Checkout code
         uses: actions/checkout@v4
 
-      # Étape 2 : Installer Python
-      - name: 🐍 Configuration de Python
+      - name:  Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # Étape 3 : Installer les outils
-      - name: 📦 Installation des dépendances
+      - name:  Set PYTHONPATH
+        run: echo "PYTHONPATH=." >> $GITHUB_ENV
+
+      - name:  Install dependencies
         run: pip install flake8 pytest
 
-      # Étape 4 : Vérification de la syntaxe (Linter)
-      - name: 🔍 Vérification syntaxe avec Flake8
-        run: |
-          flake8 app/ tests/ --max-line-length=100 --statistics
+      - name:  Lint check (flake8)
+        run: flake8 app/ tests/ --max-line-length=100
 
-      # Étape 5 : Exécution des tests unitaires
-      - name: ✅ Exécution des tests avec Pytest
-        run: |
-          pytest tests/ -v
+      - name:  Run tests
+        run: pytest tests/ -v
+        
