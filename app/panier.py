@@ -29,3 +29,5 @@ def verifier_age(age):
         raise ValueError("L'âge ne peut pas être négatif.")
 
     return age >= 18
+
+# Malick
